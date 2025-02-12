@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>NMEA Data</name>
+<description>Converted NMEA data to KML</description>
+
+<Placemark>
+    <name>12:55:41+00:00</name>
+    <description>Latitude: 50.48746833333333, Longitude: 8.263458333333332, Altitude: 191.79 m</description>
+    <Point>
+        <coordinates>8.263458333333332,50.48746833333333,191.79</coordinates>
+    </Point>
+</Placemark>
+
+<Placemark>
+    <name>12:55:42+00:00</name>
+    <description>Latitude: 50.48746666666667, Longitude: 8.26346, Altitude: 191.56 m</description>
+    <Point>
+        <coordinates>8.26346,50.48746666666667,191.56</coordinates>
+    </Point>
+</Placemark>
+
+<Placemark>
+    <name>12:55:41+00:00</name>
+    <description>Latitude: 50.48746833333333, Longitude: 8.263458333333332, Altitude: 191.79 m</description>
+    <Point>
+        <coordinates>8.263458333333332,50.48746833333333,191.79</coordinates>
+    </Point>
+</Placemark>
+
+<Placemark>
+    <name>12:55:42+00:00</name>
+    <description>Latitude: 50.48746666666667, Longitude: 8.26346, Altitude: 191.56 m</description>
+    <Point>
+        <coordinates>8.26346,50.48746666666667,191.56</coordinates>
+    </Point>
+</Placemark>
+
+</Document>
+</kml>
