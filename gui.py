@@ -13,19 +13,20 @@ class NMEAReaderGUI(tk.Tk):
         super().__init__()
         self.nmea_handler = nmea_handler
         self.title("NMEA Reader")
-        self.geometry("1200x600")  # Increased window size
+        self.geometry("800x600")  # Adjusted width to remove empty space
+        self.configure(bg="#f0f0f0")  # Light gray background
         
         # Create main container
         self.main_container = ttk.PanedWindow(self, orient=tk.HORIZONTAL)
         self.main_container.pack(fill=tk.BOTH, expand=True)
         
         # Left frame for controls
-        self.left_frame = ttk.Frame(self.main_container)
+        self.left_frame = ttk.Frame(self.main_container, padding="10")
         self.main_container.add(self.left_frame, weight=1)
         
-        # Right frame for map
-        self.right_frame = ttk.Frame(self.main_container)
-        self.main_container.add(self.right_frame, weight=2)  # Give more weight to the map frame
+        # Title label
+        title_label = ttk.Label(self.left_frame, text="NMEA Reader", font=("Helvetica", 16, "bold"))
+        title_label.pack(pady=(0, 10))  # Add some space below the title
         
         # Variables
         self.current_thread = None
@@ -35,7 +36,7 @@ class NMEAReaderGUI(tk.Tk):
 
     def create_widgets(self):
         # Source selection
-        self.source_frame = ttk.LabelFrame(self.left_frame, text="Data Source")
+        self.source_frame = ttk.LabelFrame(self.left_frame, text="Data Source", padding="10")
         self.source_frame.pack(padx=5, pady=5, fill="x")
         
         ttk.Radiobutton(self.source_frame, text="Serial Port", variable=self.source_var, 
@@ -44,7 +45,7 @@ class NMEAReaderGUI(tk.Tk):
                         value="file", command=self.update_source).pack(side="left", padx=5)
         
         # Serial settings
-        self.serial_frame = ttk.LabelFrame(self.left_frame, text="Serial Settings")
+        self.serial_frame = ttk.LabelFrame(self.left_frame, text="Serial Settings", padding="10")
         self.serial_frame.pack(padx=5, pady=5, fill="x")
         
         # Center-align the COM port selection
@@ -63,14 +64,14 @@ class NMEAReaderGUI(tk.Tk):
         self.baud_cb.pack(side="left", padx=5)
 
         # File selection
-        self.file_frame = ttk.LabelFrame(self.left_frame, text="File Settings")
+        self.file_frame = ttk.LabelFrame(self.left_frame, text="File Settings", padding="10")
         self.file_frame.pack(padx=5, pady=5, fill="x")
         self.file_path = tk.StringVar()
         ttk.Entry(self.file_frame, textvariable=self.file_path, state="readonly").pack(side="left", padx=5, fill="x", expand=True)
         ttk.Button(self.file_frame, text="Browse", command=self.browse_file).pack(side="left", padx=5)
         
         # Button frame for control buttons
-        button_frame = ttk.Frame(self.left_frame)
+        button_frame = ttk.Frame(self.left_frame, padding="10")
         button_frame.pack(pady=5)
         
         # Start/Stop button
@@ -82,7 +83,7 @@ class NMEAReaderGUI(tk.Tk):
         self.clear_button.pack(side="left", padx=5)
         
         # Output area in left frame
-        self.output = tk.Text(self.left_frame, height=15)
+        self.output = tk.Text(self.left_frame, height=15, wrap=tk.WORD)
         self.output.pack(padx=5, pady=5, fill="both", expand=True)
         
         # Initial state
@@ -113,7 +114,7 @@ class NMEAReaderGUI(tk.Tk):
     def update_output(self, message):
         """Update output with timestamp"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
-        self.output.insert(tk.END, f"[{timestamp}] {message}")
+        self.output.insert(tk.END, f"[{timestamp}] {message}\n")
         self.output.see(tk.END)
 
     def toggle_reading(self):
